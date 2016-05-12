@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../framework_home/assets/styles/app.css">
+    <link rel="stylesheet" href="../../framework_home/assets/styles/style.css">
+</head>
+<body ng-app="frontierApp" ng-controller="RootController">
+    <div ng-controller="CaptchaController">
+        <style type="text/css">
+            .captcha-img {width: 50px; height: 32px;}
+            .captcha-input {width: 100px; height: 32px;}
+            .captcha-check-none {display: inline-block;width: 32px; height: 32px;}
+            .captcha-check-ok {display: inline-block;width: 32px; height: 32px;background-repeat: no-repeat;background-image: url("../../assets/images/correct.png");}
+            .captcha-check-failed {display: inline-block;width: 32px; height: 32px;background-repeat: no-repeat;background-image: url("../../assets/images/error.png");}
+        </style>
+        <div class="form-item"><div captcha captcha-model="formCaptcha"></div>
+        <br>
+        <div class="form-item"><button ng-click="createCaptcha()">Create new captcha</button></div>
+        <div class="form-item"><button ng-click="submit()">Submit</button></div>
+    </div>
+
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/angular-route/angular-route.js"></script>
+    <script src="../../bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript">
+        // Declare app level module which depends on modules, and components
+        angular.module('frontierApp', [
+            'ngRoute',
+            'frontierApp.captcha',
+            'frontierApp.captchaExample']
+        ).controller('RootController', function($rootScope, $scope) {
+
+        });
+        angular.module("frontierApp.captchaExample", [
+            'ngResource']
+        ).controller("CaptchaController", function ($rootScope, $scope) {
+            $scope.formCaptcha = {
+                input: "0000"
+            };
+            $scope.submit = function() {
+                if($scope.formCaptcha.checkResult !== true) {
+                    alert("Your input for captcha(Id: " + $scope.formCaptcha.captchaId + ") " + $scope.formCaptcha.input + " is not correct!");
+                } else {
+                    alert("Your input for captcha(Id: " + $scope.formCaptcha.captchaId + ") " + $scope.formCaptcha.input + " is correct and eligible to be submitted!");
+                }
+            };
+            $scope.createCaptcha = function() {
+                $scope.formCaptcha.createCaptcha();
+            }
+        });
+    </script>
+    <script src="../../components/services/rest_service.js"></script>
+    <script src="../../components/directives/captcha.js"></script>
+</body>
+</html>

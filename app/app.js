@@ -21,8 +21,14 @@ angular.module('backward', [
   }])
 
   .controller('rootController', ['$rootScope', '$scope', function ($rootScope, $scope) {
-
-
+    // $rootScope.env = 'product';
+    $rootScope.env = 'development';
+    /*$rootScope.restInterfaceUrls = {
+      "index": '/restapi/index',
+      "login": '/restapi/login',
+      "captcha": '/restapi/captcha',
+      "users": '/restapi/users'
+    };*/
 
 
 

@@ -1,1 +1,19 @@
 <p>this is signup page</p>
+<div class="form-item">
+    <div class="label">用户名:</div>
+    <input name="username" ng-model="username">
+    <button class="bt-small" ng-click="checkUsername()">检查可用</button>
+</div>
+<div class="form-item">
+    <div class="label">密码:</div>
+    <input name="password" ng-model="password" type="password"></div>
+<div class="form-item">
+    <div class="label">确认密码:</div>
+    <input name="password2" ng-model="password2" type="password"></div>
+<div class="form-item">
+    <div class="label">验证码:</div>
+    <div captcha captcha-model="captcha"></div>
+</div>
+<div class="form-item">
+    <button ng-click="signup()">注册</button>
+</div>
